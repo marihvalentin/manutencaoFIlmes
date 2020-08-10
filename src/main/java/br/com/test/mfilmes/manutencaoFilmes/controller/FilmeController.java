@@ -23,10 +23,20 @@ public class FilmeController
 
     @RequestMapping("/listarFilmes")
     @ResponseBody
-    public List<FilmeDto> listaFilmes()
+    public List<FilmeDto> listaFilmes(String titulo)
     {
-        List<Filme> filmes = filmeRepository.findAll(); //consulta e traz todos os registros do banco de dados
-        return FilmeDto.converter(filmes);
+        //filtrar resultados por título
+        if(titulo == null)
+        {
+            List<Filme> filmes = filmeRepository.findAll(); //consulta e traz todos os registros do banco de dados
+            return FilmeDto.converter(filmes);
+        }
+        else
+        {
+            List<Filme> filmes = filmeRepository.findByTitulo(titulo);
+
+            return FilmeDto.converter(filmes);
+        }
     }
 
 }
