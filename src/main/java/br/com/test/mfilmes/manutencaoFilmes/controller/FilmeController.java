@@ -5,12 +5,17 @@ import br.com.test.mfilmes.manutencaoFilmes.controller.form.FilmeForm;
 import br.com.test.mfilmes.manutencaoFilmes.model.Filme;
 import br.com.test.mfilmes.manutencaoFilmes.repository.FilmeRepository;
 import br.com.test.mfilmes.manutencaoFilmes.repository.GeneroRepository;
+import com.mysql.fabric.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import java.net.URI;
 import java.util.List;
 
 @Controller
@@ -55,10 +60,13 @@ public class FilmeController
 
     //método para inclusão de filmes
     @RequestMapping(value = "/incluirFilme", method = RequestMethod.POST)
-    public void incluir(@RequestBody FilmeForm form)
+    public ResponseEntity<FilmeDto> incluir(@RequestBody FilmeForm form, UriComponentsBuilder uriBuilder)
     {
         Filme filme = form.converter(generoRepository);
         filmeRepository.save(filme);
+
+        URI uri = uriBuilder.path("/index/{id}").buildAndExpand(filme.getId()).toUri();
+        return ResponseEntity.created(uri).body(new FilmeDto(filme));
     }
 
 }
