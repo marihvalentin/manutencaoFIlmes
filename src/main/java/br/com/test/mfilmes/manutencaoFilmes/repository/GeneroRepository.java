@@ -1,4 +1,8 @@
 package br.com.test.mfilmes.manutencaoFilmes.repository;
 
-public interface GeneroRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface GeneroRepository extends JpaRepository
+{
+
 }
