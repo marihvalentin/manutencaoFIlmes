@@ -53,7 +53,7 @@ public class FilmeForm
         this.ano = ano;
     }
 
-    //metodo que converte
+    //metodo que converte o form preenchido para um filme
     public Filme converter(GeneroRepository generoRepository)
     {
         Genero genero = generoRepository.findByTipo(tipoGenero);
