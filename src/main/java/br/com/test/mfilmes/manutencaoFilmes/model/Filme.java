@@ -15,8 +15,13 @@ public class Filme
     private String sinopse;
     private int ano;
 
+    public Filme()
+    {
+        //construtor padrão
+    }
+
     //construtor para cadastro de novos filmes
-    /*public Filme(String titulo, String diretor, String genero, String sinopse, int ano)
+    public Filme(String titulo, String diretor, Genero genero, String sinopse, int ano)
     {
         super();
         this.titulo = titulo;
@@ -24,7 +29,7 @@ public class Filme
         this.genero = genero;
         this.sinopse = sinopse;
         this.ano = ano;
-    }*/
+    }
 
     //getter and setters
     public Integer getId()
