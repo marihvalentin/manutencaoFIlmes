@@ -1,9 +1,6 @@
 package br.com.test.mfilmes.manutencaoFilmes.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity(name = "filme") //transformando a classe em entidade da JPA
 public class Filme
@@ -11,9 +8,9 @@ public class Filme
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //hibernate gera id auto-increment
     private Integer id;
-
     private String titulo;
     private String diretor;
+    @ManyToOne
     private Genero genero;
     private String sinopse;
     private int ano;
